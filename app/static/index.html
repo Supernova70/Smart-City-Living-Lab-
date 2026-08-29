@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Explainable AI-powered image quality and visual anomaly assessment." />
+    <title>ImageGuard AI — Image Quality Assessment</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="#analyze" aria-label="ImageGuard AI home">
+        <span class="brand-mark" aria-hidden="true">IG</span>
+        <span>ImageGuard <strong>AI</strong></span>
+      </a>
+      <nav aria-label="Primary navigation">
+        <a href="#analyze">Analyze</a>
+        <a href="#history">History</a>
+        <a href="/docs" target="_blank" rel="noreferrer">API Docs</a>
+      </nav>
+      <div id="healthBadge" class="health-badge" role="status">
+        <span class="status-dot"></span>
+        Checking model
+      </div>
+    </header>
+
+    <main>
+      <section id="analyze" class="hero section-shell">
+        <div class="hero-copy">
+          <p class="eyebrow">EXPLAINABLE VISUAL INSPECTION</p>
+          <h1>Know what’s wrong with an image <em>before it ships.</em></h1>
+          <p class="hero-description">
+            One local AI workflow checks sharpness, exposure, noise, severe degradation,
+            and suspicious visual anomalies—without sending your image to an external AI service.
+          </p>
+          <div class="capability-row" aria-label="Detection capabilities">
+            <span>Blur</span><span>Exposure</span><span>Noise</span><span>Defects</span>
+          </div>
+        </div>
+
+        <div class="upload-panel">
+          <div class="panel-heading">
+            <div>
+              <p class="step-label">NEW ANALYSIS</p>
+              <h2>Upload an image</h2>
+            </div>
+            <span class="privacy-note">Processed locally</span>
+          </div>
+
+          <input id="fileInput" type="file" accept="image/jpeg,image/png,image/webp" hidden />
+          <div id="dropZone" class="drop-zone" tabindex="0" role="button" aria-controls="fileInput" aria-label="Choose or drop an image">
+            <div id="emptyUpload" class="empty-upload">
+              <div class="upload-icon" aria-hidden="true">↑</div>
+              <strong>Drop your image here</strong>
+              <span>or click to browse</span>
+              <small>JPEG, PNG or WebP · maximum 10 MB</small>
+            </div>
+            <div id="previewWrap" class="preview-wrap" hidden>
+              <img id="previewImage" alt="Selected image preview" />
+              <div class="preview-meta">
+                <strong id="previewName"></strong>
+                <span id="previewSize"></span>
+              </div>
+              <button id="removeFile" class="icon-button" type="button" aria-label="Remove selected image">×</button>
+            </div>
+          </div>
+
+          <div id="uploadError" class="inline-error" role="alert" hidden></div>
+          <button id="analyzeButton" class="primary-button" type="button" disabled>
+            <span class="button-label">Analyze image</span>
+            <span class="button-loader" hidden aria-hidden="true"></span>
+          </button>
+          <p id="modelCaption" class="model-caption">MobileNetV3-Small + Hybrid CV · Real-data trained</p>
+        </div>
+      </section>
+
+      <section id="resultSection" class="result-section section-shell" hidden aria-live="polite">
+        <div class="section-title-row">
+          <div>
+            <p class="eyebrow">ANALYSIS COMPLETE</p>
+            <h2>Quality report</h2>
+          </div>
+          <button id="newAnalysis" class="secondary-button" type="button">Analyze another</button>
+        </div>
+
+        <div class="result-overview">
+          <article class="score-card">
+            <div id="scoreRing" class="score-ring">
+              <div><strong id="qualityScore">—</strong><span>/ 100</span></div>
+            </div>
+            <div class="score-copy">
+              <span id="qualityLabel" class="quality-label">—</span>
+              <h3 id="resultHeadline">Assessment ready</h3>
+              <p id="resultSummary"></p>
+              <span id="analysisTime" class="analysis-time"></span>
+            </div>
+          </article>
+          <article class="result-image-card">
+            <img id="resultImage" alt="Analyzed image" />
+          </article>
+        </div>
+
+        <div class="report-grid">
+          <article class="report-card issues-card">
+            <div class="card-title-row">
+              <div><p class="step-label">FINDINGS</p><h3>Detected issues</h3></div>
+              <span id="issueCount" class="count-pill">0 issues</span>
+            </div>
+            <div id="issuesList" class="issues-list"></div>
+          </article>
+
+          <article class="report-card">
+            <div class="card-title-row">
+              <div><p class="step-label">MEASUREMENTS</p><h3>Image statistics</h3></div>
+            </div>
+            <div id="statisticsGrid" class="statistics-grid"></div>
+          </article>
+        </div>
+      </section>
+
+      <section id="history" class="history-section section-shell">
+        <div class="section-title-row">
+          <div>
+            <p class="eyebrow">LOCAL RECORDS</p>
+            <h2>Analysis history</h2>
+            <p>Previous results saved in the local SQLite database.</p>
+          </div>
+          <button id="refreshHistory" class="secondary-button" type="button">Refresh</button>
+        </div>
+        <div id="historyList" class="history-list" aria-live="polite"></div>
+        <div id="historyEmpty" class="history-empty">
+          <span aria-hidden="true">◎</span>
+          <h3>No analyses yet</h3>
+          <p>Your completed image reports will appear here.</p>
+        </div>
+        <div id="historyPager" class="history-pager" hidden>
+          <button id="loadMoreBtn" class="secondary-button" type="button">Load more results</button>
+          <span id="historyMeta" class="history-meta"></span>
+        </div>
+      </section>
+
+      <section id="about" class="about-section section-shell">
+        <div class="about-grid">
+          <div class="about-header">
+            <p class="eyebrow">UNDER THE HOOD</p>
+            <h2>How it works</h2>
+            <p class="about-lead">A fully local, open-source pipeline — no external AI APIs, no data leaves your machine.</p>
+          </div>
+          <div class="pipeline-steps">
+            <div class="pipeline-step">
+              <span class="step-num">01</span>
+              <div>
+                <strong>CV Feature Extraction</strong>
+                <p>21 explainable statistics — sharpness (Laplacian variance), brightness, contrast, noise estimate, saturation, entropy, blockiness, and more — are computed in milliseconds using NumPy and Pillow.</p>
+              </div>
+            </div>
+            <div class="pipeline-step">
+              <span class="step-num">02</span>
+              <div>
+                <strong>Deep Model Inference</strong>
+                <p>A MobileNetV3-Small backbone (pretrained on ImageNet) fine-tuned with a dual-head architecture: a 6-class multi-label sigmoid classifier for issue detection, and a quality-score regression head. Trained on 15,479 real images from KADID-10k and MVTec AD.</p>
+              </div>
+            </div>
+            <div class="pipeline-step">
+              <span class="step-num">03</span>
+              <div>
+                <strong>Explainable Gate Override</strong>
+                <p>If measured statistics exceed clear physical thresholds (e.g. brightness_mean &lt; 0.18 for underexposure), the model probability is boosted to guarantee detection. This hybrid layer adds interpretability and catches cases where the model is uncertain.</p>
+              </div>
+            </div>
+            <div class="pipeline-step">
+              <span class="step-num">04</span>
+              <div>
+                <strong>Decision Policy</strong>
+                <p>The quality score (0–100) is capped by detected issue confidence. Labels: ACCEPTABLE ≥ 70 with no medium/high issues; DEGRADED for reduced quality; POTENTIALLY_DEFECTIVE when the defect head fires above threshold.</p>
+              </div>
+            </div>
+          </div>
+          <div class="dataset-badges">
+            <div class="dataset-badge">
+              <strong>KADID-10k</strong>
+              <span>10,125 distorted images · 25 distortion types · quality regression + issue labels</span>
+            </div>
+            <div class="dataset-badge">
+              <strong>MVTec AD</strong>
+              <span>5,354 images · 15 industrial categories · defect detection head only</span>
+            </div>
+            <div class="dataset-badge">
+              <strong>Known limitation</strong>
+              <span>Macro-F1 = 0.658 (target ≥ 0.70) — underexposure/overexposure classes are rare in KADID test set (4% positive rate). ROC-AUC for those classes is 0.88–0.91.</span>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <span>ImageGuard AI · MobileNetV3-Small · KADID-10k + MVTec AD</span>
+      <span>No external AI APIs · All inference runs locally</span>
+    </footer>
+
+
+    <script src="/static/app.js" defer></script>
+  </body>
+</html>
+

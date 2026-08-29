@@ -1,0 +1,82 @@
+# ============================================================
+# ImageGuard AI — .gitignore
+# ============================================================
+
+# ── Python ───────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+dist/
+build/
+
+# ── Virtual environments ──────────────────────────────────────
+.venv/
+venv/
+env/
+ENV/
+
+# ── Tests & coverage ─────────────────────────────────────────
+.pytest_cache/
+.coverage
+htmlcov/
+test-output/
+*.log
+
+# ── IDE & OS ─────────────────────────────────────────────────
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ── Secrets — NEVER commit the real .env ─────────────────────
+.env
+# .env.example is safe to commit (no real secrets)
+
+# ── Runtime data (generated at startup, not source) ──────────
+data/*.db
+data/uploads/*
+!data/uploads/.gitkeep
+
+# ── Training datasets (large, reproducible via SOURCES.md) ───
+datasets/*
+!datasets/.gitkeep
+!datasets/SOURCES.md
+!datasets/manifests/
+!datasets/manifests/*.csv
+!datasets/manifests/*.json
+
+# ── Model checkpoints (intermediate training snapshots) ──────
+# These can be hundreds of MB. Only the promoted artifact is kept.
+artifacts/checkpoints/
+
+# ── Temporary / experimental model artifacts ─────────────────
+# smoke_model.pt = quick sanity-check model from 1-epoch smoke test
+# smoke_metrics.json = metrics from that smoke test
+# real_metrics.json = intermediate evaluation, superseded by model_card.md
+artifacts/smoke_model.pt
+artifacts/smoke_metrics.json
+artifacts/test_results.txt
+
+# NOTE: The following ARE committed (they are submission deliverables):
+#   artifacts/image_quality_model.pt      ← promoted deep model (14 MB)  [ONLY MODEL]
+#   artifacts/metrics.json                ← machine-readable test metrics
+#   artifacts/model_card.md               ← full evaluation report
+
+# Old Random Forest model — superseded by .pt, not needed in submission
+artifacts/image_quality_model.joblib
+
+# ── Internal / tooling files (not relevant to assessors) ─────
+graphify-out/
+CLAUDE_CODE_PROMPT.md
+TRAINING.md
+project.md
+
+# ── Jupyter ───────────────────────────────────────────────────
+.ipynb_checkpoints/
+*.ipynb

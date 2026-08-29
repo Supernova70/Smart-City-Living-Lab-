@@ -1,0 +1,1335 @@
+{
+  "selected_architecture": "mobilenet_v3_small",
+  "device": "cuda",
+  "pytorch_version": "2.11.0+cu128",
+  "manifest": "C:\\Users\\Dragon\\Desktop\\Clg\\assigment\\datasets\\manifests\\real_dataset.json",
+  "dataset": {
+    "records": 15479,
+    "sources": {
+      "kadid10k": 10125,
+      "mvtec_ad": 5354
+    },
+    "splits": {
+      "train": 11620,
+      "validation": 1943,
+      "test": 1916
+    }
+  },
+  "candidates": [
+    {
+      "architecture": "mobilenet_v3_small",
+      "validation": {
+        "macro_f1": 0.6838,
+        "quality_mae": 20.014,
+        "quality_rmse": 27.098,
+        "selection_score": 0.71862,
+        "per_issue": {
+          "blur": {
+            "available": true,
+            "observed": 1500,
+            "positive_support": 180,
+            "precision": 0.9835,
+            "recall": 0.6611,
+            "f1": 0.7907,
+            "roc_auc": 0.9057,
+            "threshold": 0.7
+          },
+          "underexposure": {
+            "available": true,
+            "observed": 1500,
+            "positive_support": 60,
+            "precision": 0.1498,
+            "recall": 0.6167,
+            "f1": 0.241,
+            "roc_auc": 0.7758,
+            "threshold": 0.425
+          },
+          "overexposure": {
+            "available": true,
+            "observed": 1500,
+            "positive_support": 60,
+            "precision": 0.7391,
+            "recall": 0.5667,
+            "f1": 0.6415,
+            "roc_auc": 0.8776,
+            "threshold": 0.8
+          },
+          "noise": {
+            "available": true,
+            "observed": 1500,
+            "positive_support": 300,
+            "precision": 0.9104,
+            "recall": 0.8133,
+            "f1": 0.8592,
+            "roc_auc": 0.9663,
+            "threshold": 0.85
+          },
+          "severe_degradation": {
+            "available": true,
+            "observed": 1500,
+            "positive_support": 420,
+            "precision": 0.6945,
+            "recall": 0.6333,
+            "f1": 0.6625,
+            "roc_auc": 0.8415,
+            "threshold": 0.275
+          },
+          "potential_defect": {
+            "available": true,
+            "observed": 443,
+            "positive_support": 312,
+            "precision": 0.9153,
+            "recall": 0.9006,
+            "f1": 0.9079,
+            "roc_auc": 0.9211,
+            "threshold": 0.4
+          }
+        }
+      },
+      "test": {
+        "macro_f1": 0.6584,
+        "quality_mae": 13.96,
+        "quality_rmse": 19.123,
+        "selection_score": 0.71901,
+        "per_issue": {
+          "blur": {
+            "available": true,
+            "observed": 1500,
+            "positive_support": 180,
+            "precision": 0.9034,
+            "recall": 0.7278,
+            "f1": 0.8062,
+            "roc_auc": 0.947,
+            "threshold": 0.7
+          },
+          "underexposure": {
+            "available": true,
+            "observed": 1500,
+            "positive_support": 60,
+            "precision": 0.2108,
+            "recall": 0.7167,
+            "f1": 0.3258,
+            "roc_auc": 0.8815,
+            "threshold": 0.425
+          },
+          "overexposure": {
+            "available": true,
+            "observed": 1500,
+            "positive_support": 60,
+            "precision": 0.2176,
+            "recall": 0.6167,
+            "f1": 0.3217,
+            "roc_auc": 0.909,
+            "threshold": 0.8
+          },
+          "noise": {
+            "available": true,
+            "observed": 1500,
+            "positive_support": 300,
+            "precision": 0.9843,
+            "recall": 0.8367,
+            "f1": 0.9045,
+            "roc_auc": 0.9902,
+            "threshold": 0.85
+          },
+          "severe_degradation": {
+            "available": true,
+            "observed": 1500,
+            "positive_support": 420,
+            "precision": 0.6581,
+            "recall": 0.7333,
+            "f1": 0.6937,
+            "roc_auc": 0.887,
+            "threshold": 0.275
+          },
+          "potential_defect": {
+            "available": true,
+            "observed": 416,
+            "positive_support": 293,
+            "precision": 0.9211,
+            "recall": 0.8771,
+            "f1": 0.8986,
+            "roc_auc": 0.9241,
+            "threshold": 0.4
+          }
+        }
+      },
+      "thresholds": {
+        "blur": 0.7,
+        "underexposure": 0.425,
+        "overexposure": 0.8,
+        "noise": 0.85,
+        "severe_degradation": 0.275,
+        "potential_defect": 0.4
+      },
+      "history": [
+        {
+          "epoch": 1,
+          "seconds": 199.2,
+          "learning_rate": 0.0008,
+          "train": {
+            "loss": 1.2982916986880737,
+            "classification_loss": 1.0515902784625757,
+            "quality_loss": 0.1644676125539457
+          },
+          "validation": {
+            "macro_f1": 0.4596,
+            "quality_mae": 21.012,
+            "quality_rmse": 26.544,
+            "selection_score": 0.55867,
+            "per_issue": {
+              "blur": {
+                "available": true,
+                "observed": 1500,
+                "positive_support": 180,
+                "precision": 0.533,
+                "recall": 0.5833,
+                "f1": 0.557,
+                "roc_auc": 0.815,
+                "threshold": 0.675
+              },
+              "underexposure": {
+                "available": true,
+                "observed": 1500,
+                "positive_support": 60,
+                "precision": 0.1494,
+                "recall": 0.2167,
+                "f1": 0.1769,
+                "roc_auc": 0.6595,
+                "threshold": 0.675
+              },
+              "overexposure": {
+                "available": true,
+                "observed": 1500,
+                "positive_support": 60,
+                "precision": 0.1016,
+                "recall": 0.4333,
+                "f1": 0.1646,
+                "roc_auc": 0.6965,
+                "threshold": 0.5
+              },
+              "noise": {
+                "available": true,
+                "observed": 1500,
+                "positive_support": 300,
+                "precision": 0.4093,
+                "recall": 0.6767,
+                "f1": 0.5101,
+                "roc_auc": 0.8038,
+                "threshold": 0.525
+              },
+              "severe_degradation": {
+                "available": true,
+                "observed": 1500,
+                "positive_support": 420,
+                "precision": 0.4103,
+                "recall": 0.6429,
+                "f1": 0.5009,
+                "roc_auc": 0.6663,
+                "threshold": 0.425
+              },
+              "potential_defect": {
+                "available": true,
+                "observed": 443,
+                "positive_support": 312,
+                "precision": 0.7451,
+                "recall": 0.984,
+                "f1": 0.8481,
+                "roc_auc": 0.7074,
+                "threshold": 0.275
+              }
+            }
+          }
+        },
+        {
+          "epoch": 2,
+          "seconds": 156.5,
+          "learning_rate": 0.00015,
+          "train": {
+            "loss": 0.9592001559196774,
+            "classification_loss": 0.7807584514203457,
+            "quality_loss": 0.11896113578146789
+          },
+          "validation": {
+            "macro_f1": 0.615,
+            "quality_mae": 18.318,
+            "quality_rmse": 23.528,
+            "selection_score": 0.67557,
+            "per_issue": {
+              "blur": {
+                "available": true,
+                "observed": 1500,
+                "positive_support": 180,
+                "precision": 0.8545,
+                "recall": 0.5222,
+                "f1": 0.6483,
+                "roc_auc": 0.8916,
+                "threshold": 0.85
+              },
+              "underexposure": {
+                "available": true,
+                "observed": 1500,
+                "positive_support": 60,
+                "precision": 0.1761,
+                "recall": 0.4167,
+                "f1": 0.2475,
+                "roc_auc": 0.7922,
+                "threshold": 0.725
+              },
+              "overexposure": {
+                "available": true,
+                "observed": 1500,
+                "positive_support": 60,
+                "precision": 0.9643,
+                "recall": 0.45,
+                "f1": 0.6136,
+                "roc_auc": 0.8619,
+                "threshold": 0.775
+              },
+              "noise": {
+                "available": true,
+                "observed": 1500,
+                "positive_support": 300,
+                "precision": 0.7159,
+                "recall": 0.8567,
+                "f1": 0.78,
+                "roc_auc": 0.958,
+                "threshold": 0.85
+              },
+              "severe_degradation": {
+                "available": true,
+                "observed": 1500,
+                "positive_support": 420,
+                "precision": 0.4036,
+                "recall": 0.8071,
+                "f1": 0.5381,
+                "roc_auc": 0.7601,
+                "threshold": 0.25
+              },
+              "potential_defect": {
+                "available": true,
+                "observed": 443,
+                "positive_support": 312,
+                "precision": 0.8073,
+                "recall": 0.9263,
+                "f1": 0.8627,
+                "roc_auc": 0.8164,
+                "threshold": 0.25
+              }
+            }
+          }
+        },
+        {
+          "epoch": 3,
+          "seconds": 126.3,
+          "learning_rate": 0.00015,
+          "train": {
+            "loss": 0.716061866991286,
+            "classification_loss": 0.5778595856975975,
+            "quality_loss": 0.09213485361979361
+          },
+          "validation": {
+            "macro_f1": 0.644,
+            "quality_mae": 19.021,
+            "quality_rmse": 24.897,
+            "selection_score": 0.69372,
+            "per_issue": {
+              "blur": {
+                "available": true,
+                "observed": 1500,
+                "positive_support": 180,
+                "precision": 0.7973,
+                "recall": 0.6556,
+                "f1": 0.7195,
+                "roc_auc": 0.9085,
+                "threshold": 0.8
+              },
+              "underexposure": {
+                "available": true,
+                "observed": 1500,
+                "positive_support": 60,
+                "precision": 0.1512,
+                "recall": 0.4333,
+                "f1": 0.2241,
+                "roc_auc": 0.7867,
+                "threshold": 0.85
+              },
+              "overexposure": {
+                "available": true,
+                "observed": 1500,
+                "positive_support": 60,
+                "precision": 0.8056,
+                "recall": 0.4833,
+                "f1": 0.6042,
+                "roc_auc": 0.857,
+                "threshold": 0.7
+              },
+              "noise": {
+                "available": true,
+                "observed": 1500,
+                "positive_support": 300,
+                "precision": 0.7551,
+                "recall": 0.8633,
+                "f1": 0.8056,
+                "roc_auc": 0.9649,
+                "threshold": 0.85
+              },
+              "severe_degradation": {
+                "available": true,
+                "observed": 1500,
+                "positive_support": 420,
+                "precision": 0.614,
+                "recall": 0.6476,
+                "f1": 0.6304,
+                "roc_auc": 0.8465,
+                "threshold": 0.35
+              },
+              "potential_defect": {
+                "available": true,
+                "observed": 443,
+                "positive_support": 312,
+                "precision": 0.8357,
+                "recall": 0.9295,
+                "f1": 0.8801,
+                "roc_auc": 0.8769,
+                "threshold": 0.2
+              }
+            }
+          }
+        },
+        {
+          "epoch": 4,
+          "seconds": 125.8,
+          "learning_rate": 0.00015,
+          "train": {
+            "loss": 0.6173694972686226,
+            "classification_loss": 0.49262846734458116,
+            "quality_loss": 0.08316068711294672
+          },
+          "validation": {
+            "macro_f1": 0.6428,
+            "quality_mae": 21.516,
+            "quality_rmse": 28.303,
+            "selection_score": 0.68542,
+            "per_issue": {
+              "blur": {
+                "available": true,
+                "observed": 1500,
+                "positive_support": 180,
+                "precision": 0.8346,
+                "recall": 0.6167,
+                "f1": 0.7093,
+                "roc_auc": 0.9093,
+                "threshold": 0.85
+              },
+              "underexposure": {
+                "available": true,
+                "observed": 1500,
+                "positive_support": 60,
+                "precision": 0.1444,
+                "recall": 0.45,
+                "f1": 0.2186,
+                "roc_auc": 0.8041,
+                "threshold": 0.825
+              },
+              "overexposure": {
+                "available": true,
+                "observed": 1500,
+                "positive_support": 60,
+                "precision": 0.64,
+                "recall": 0.5333,
+                "f1": 0.5818,
+                "roc_auc": 0.8686,
+                "threshold": 0.85
+              },
+              "noise": {
+                "available": true,
+                "observed": 1500,
+                "positive_support": 300,
+                "precision": 0.8042,
+                "recall": 0.7667,
+                "f1": 0.785,
+                "roc_auc": 0.9576,
+                "threshold": 0.8
+              },
+              "severe_degradation": {
+                "available": true,
+                "observed": 1500,
+                "positive_support": 420,
+                "precision": 0.7039,
+                "recall": 0.6452,
+                "f1": 0.6733,
+                "roc_auc": 0.8626,
+                "threshold": 0.175
+              },
+              "potential_defect": {
+                "available": true,
+                "observed": 443,
+                "positive_support": 312,
+                "precision": 0.8805,
+                "recall": 0.8974,
+                "f1": 0.8889,
+                "roc_auc": 0.909,
+                "threshold": 0.275
+              }
+            }
+          }
+        },
+        {
+          "epoch": 5,
+          "seconds": 127.4,
+          "learning_rate": 0.00015,
+          "train": {
+            "loss": 0.537756372288049,
+            "classification_loss": 0.4220652486648084,
+            "quality_loss": 0.07712741579584739
+          },
+          "validation": {
+            "macro_f1": 0.6488,
+            "quality_mae": 18.406,
+            "quality_rmse": 24.391,
+            "selection_score": 0.69893,
+            "per_issue": {
+              "blur": {
+                "available": true,
+                "observed": 1500,
+                "positive_support": 180,
+                "precision": 0.906,
+                "recall": 0.5889,
+                "f1": 0.7138,
+                "roc_auc": 0.9038,
+                "threshold": 0.775
+              },
+              "underexposure": {
+                "available": true,
+                "observed": 1500,
+                "positive_support": 60,
+                "precision": 0.1657,
+                "recall": 0.4667,
+                "f1": 0.2445,
+                "roc_auc": 0.8142,
+                "threshold": 0.85
+              },
+              "overexposure": {
+                "available": true,
+                "observed": 1500,
+                "positive_support": 60,
+                "precision": 0.7381,
+                "recall": 0.5167,
+                "f1": 0.6078,
+                "roc_auc": 0.8686,
+                "threshold": 0.75
+              },
+              "noise": {
+                "available": true,
+                "observed": 1500,
+                "positive_support": 300,
+                "precision": 0.6578,
+                "recall": 0.9033,
+                "f1": 0.7612,
+                "roc_auc": 0.964,
+                "threshold": 0.85
+              },
+              "severe_degradation": {
+                "available": true,
+                "observed": 1500,
+                "positive_support": 420,
+                "precision": 0.7022,
+                "recall": 0.6738,
+                "f1": 0.6877,
+                "roc_auc": 0.8589,
+                "threshold": 0.175
+              },
+              "potential_defect": {
+                "available": true,
+                "observed": 443,
+                "positive_support": 312,
+                "precision": 0.8498,
+                "recall": 0.9071,
+                "f1": 0.8775,
+                "roc_auc": 0.8898,
+                "threshold": 0.175
+              }
+            }
+          }
+        },
+        {
+          "epoch": 6,
+          "seconds": 128.6,
+          "learning_rate": 0.00015,
+          "train": {
+            "loss": 0.49636798535382276,
+            "classification_loss": 0.38997145869132777,
+            "quality_loss": 0.07093101720327252
+          },
+          "validation": {
+            "macro_f1": 0.6838,
+            "quality_mae": 20.014,
+            "quality_rmse": 27.098,
+            "selection_score": 0.71862,
+            "per_issue": {
+              "blur": {
+                "available": true,
+                "observed": 1500,
+                "positive_support": 180,
+                "precision": 0.9835,
+                "recall": 0.6611,
+                "f1": 0.7907,
+                "roc_auc": 0.9057,
+                "threshold": 0.7
+              },
+              "underexposure": {
+                "available": true,
+                "observed": 1500,
+                "positive_support": 60,
+                "precision": 0.1498,
+                "recall": 0.6167,
+                "f1": 0.241,
+                "roc_auc": 0.7758,
+                "threshold": 0.425
+              },
+              "overexposure": {
+                "available": true,
+                "observed": 1500,
+                "positive_support": 60,
+                "precision": 0.7391,
+                "recall": 0.5667,
+                "f1": 0.6415,
+                "roc_auc": 0.8776,
+                "threshold": 0.8
+              },
+              "noise": {
+                "available": true,
+                "observed": 1500,
+                "positive_support": 300,
+                "precision": 0.9104,
+                "recall": 0.8133,
+                "f1": 0.8592,
+                "roc_auc": 0.9663,
+                "threshold": 0.85
+              },
+              "severe_degradation": {
+                "available": true,
+                "observed": 1500,
+                "positive_support": 420,
+                "precision": 0.6945,
+                "recall": 0.6333,
+                "f1": 0.6625,
+                "roc_auc": 0.8415,
+                "threshold": 0.275
+              },
+              "potential_defect": {
+                "available": true,
+                "observed": 443,
+                "positive_support": 312,
+                "precision": 0.9153,
+                "recall": 0.9006,
+                "f1": 0.9079,
+                "roc_auc": 0.9211,
+                "threshold": 0.4
+              }
+            }
+          }
+        },
+        {
+          "epoch": 7,
+          "seconds": 123.3,
+          "learning_rate": 0.00015,
+          "train": {
+            "loss": 0.4812862957457462,
+            "classification_loss": 0.3777343713888408,
+            "quality_loss": 0.06903461543698883
+          },
+          "validation": {
+            "macro_f1": 0.6595,
+            "quality_mae": 18.728,
+            "quality_rmse": 25.274,
+            "selection_score": 0.70549,
+            "per_issue": {
+              "blur": {
+                "available": true,
+                "observed": 1500,
+                "positive_support": 180,
+                "precision": 0.9655,
+                "recall": 0.6222,
+                "f1": 0.7568,
+                "roc_auc": 0.8974,
+                "threshold": 0.7
+              },
+              "underexposure": {
+                "available": true,
+                "observed": 1500,
+                "positive_support": 60,
+                "precision": 0.148,
+                "recall": 0.4833,
+                "f1": 0.2266,
+                "roc_auc": 0.7853,
+                "threshold": 0.85
+              },
+              "overexposure": {
+                "available": true,
+                "observed": 1500,
+                "positive_support": 60,
+                "precision": 0.6889,
+                "recall": 0.5167,
+                "f1": 0.5905,
+                "roc_auc": 0.8855,
+                "threshold": 0.45
+              },
+              "noise": {
+                "available": true,
+                "observed": 1500,
+                "positive_support": 300,
+                "precision": 0.79,
+                "recall": 0.84,
+                "f1": 0.8142,
+                "roc_auc": 0.9663,
+                "threshold": 0.85
+              },
+              "severe_degradation": {
+                "available": true,
+                "observed": 1500,
+                "positive_support": 420,
+                "precision": 0.6499,
+                "recall": 0.6762,
+                "f1": 0.6628,
+                "roc_auc": 0.8646,
+                "threshold": 0.15
+              },
+              "potential_defect": {
+                "available": true,
+                "observed": 443,
+                "positive_support": 312,
+                "precision": 0.9123,
+                "recall": 0.9006,
+                "f1": 0.9065,
+                "roc_auc": 0.9305,
+                "threshold": 0.275
+              }
+            }
+          }
+        },
+        {
+          "epoch": 8,
+          "seconds": 121.7,
+          "learning_rate": 0.00015,
+          "train": {
+            "loss": 0.44555051476019797,
+            "classification_loss": 0.35183200931333636,
+            "quality_loss": 0.06247900439852692
+          },
+          "validation": {
+            "macro_f1": 0.6799,
+            "quality_mae": 19.705,
+            "quality_rmse": 26.736,
+            "selection_score": 0.71681,
+            "per_issue": {
+              "blur": {
+                "available": true,
+                "observed": 1500,
+                "positive_support": 180,
+                "precision": 0.9225,
+                "recall": 0.6611,
+                "f1": 0.7702,
+                "roc_auc": 0.902,
+                "threshold": 0.85
+              },
+              "underexposure": {
+                "available": true,
+                "observed": 1500,
+                "positive_support": 60,
+                "precision": 0.1838,
+                "recall": 0.4167,
+                "f1": 0.2551,
+                "roc_auc": 0.7896,
+                "threshold": 0.85
+              },
+              "overexposure": {
+                "available": true,
+                "observed": 1500,
+                "positive_support": 60,
+                "precision": 0.8378,
+                "recall": 0.5167,
+                "f1": 0.6392,
+                "roc_auc": 0.8766,
+                "threshold": 0.825
+              },
+              "noise": {
+                "available": true,
+                "observed": 1500,
+                "positive_support": 300,
+                "precision": 0.8076,
+                "recall": 0.8533,
+                "f1": 0.8298,
+                "roc_auc": 0.9723,
+                "threshold": 0.85
+              },
+              "severe_degradation": {
+                "available": true,
+                "observed": 1500,
+                "positive_support": 420,
+                "precision": 0.6737,
+                "recall": 0.6833,
+                "f1": 0.6785,
+                "roc_auc": 0.8563,
+                "threshold": 0.15
+              },
+              "potential_defect": {
+                "available": true,
+                "observed": 443,
+                "positive_support": 312,
+                "precision": 0.868,
+                "recall": 0.9487,
+                "f1": 0.9066,
+                "roc_auc": 0.9204,
+                "threshold": 0.2
+              }
+            }
+          }
+        },
+        {
+          "epoch": 9,
+          "seconds": 122.5,
+          "learning_rate": 0.00015,
+          "train": {
+            "loss": 0.42509565206177263,
+            "classification_loss": 0.33335853584764746,
+            "quality_loss": 0.06115807715655912
+          },
+          "validation": {
+            "macro_f1": 0.6741,
+            "quality_mae": 17.792,
+            "quality_rmse": 24.446,
+            "selection_score": 0.71851,
+            "per_issue": {
+              "blur": {
+                "available": true,
+                "observed": 1500,
+                "positive_support": 180,
+                "precision": 0.8862,
+                "recall": 0.6056,
+                "f1": 0.7195,
+                "roc_auc": 0.9003,
+                "threshold": 0.775
+              },
+              "underexposure": {
+                "available": true,
+                "observed": 1500,
+                "positive_support": 60,
+                "precision": 0.2164,
+                "recall": 0.4833,
+                "f1": 0.299,
+                "roc_auc": 0.8002,
+                "threshold": 0.75
+              },
+              "overexposure": {
+                "available": true,
+                "observed": 1500,
+                "positive_support": 60,
+                "precision": 0.7391,
+                "recall": 0.5667,
+                "f1": 0.6415,
+                "roc_auc": 0.8685,
+                "threshold": 0.85
+              },
+              "noise": {
+                "available": true,
+                "observed": 1500,
+                "positive_support": 300,
+                "precision": 0.6761,
+                "recall": 0.8767,
+                "f1": 0.7634,
+                "roc_auc": 0.9462,
+                "threshold": 0.55
+              },
+              "severe_degradation": {
+                "available": true,
+                "observed": 1500,
+                "positive_support": 420,
+                "precision": 0.7273,
+                "recall": 0.6857,
+                "f1": 0.7059,
+                "roc_auc": 0.8644,
+                "threshold": 0.15
+              },
+              "potential_defect": {
+                "available": true,
+                "observed": 443,
+                "positive_support": 312,
+                "precision": 0.9111,
+                "recall": 0.9199,
+                "f1": 0.9155,
+                "roc_auc": 0.9484,
+                "threshold": 0.325
+              }
+            }
+          }
+        },
+        {
+          "epoch": 10,
+          "seconds": 120.4,
+          "learning_rate": 0.00015,
+          "train": {
+            "loss": 0.4143959275108607,
+            "classification_loss": 0.3252327138118818,
+            "quality_loss": 0.05944214232599366
+          },
+          "validation": {
+            "macro_f1": 0.6578,
+            "quality_mae": 18.189,
+            "quality_rmse": 24.643,
+            "selection_score": 0.70592,
+            "per_issue": {
+              "blur": {
+                "available": true,
+                "observed": 1500,
+                "positive_support": 180,
+                "precision": 0.9009,
+                "recall": 0.5556,
+                "f1": 0.6873,
+                "roc_auc": 0.9025,
+                "threshold": 0.8
+              },
+              "underexposure": {
+                "available": true,
+                "observed": 1500,
+                "positive_support": 60,
+                "precision": 0.1971,
+                "recall": 0.45,
+                "f1": 0.2741,
+                "roc_auc": 0.7881,
+                "threshold": 0.775
+              },
+              "overexposure": {
+                "available": true,
+                "observed": 1500,
+                "positive_support": 60,
+                "precision": 0.6731,
+                "recall": 0.5833,
+                "f1": 0.625,
+                "roc_auc": 0.8599,
+                "threshold": 0.75
+              },
+              "noise": {
+                "available": true,
+                "observed": 1500,
+                "positive_support": 300,
+                "precision": 0.6085,
+                "recall": 0.9067,
+                "f1": 0.7282,
+                "roc_auc": 0.9452,
+                "threshold": 0.625
+              },
+              "severe_degradation": {
+                "available": true,
+                "observed": 1500,
+                "positive_support": 420,
+                "precision": 0.7385,
+                "recall": 0.6857,
+                "f1": 0.7111,
+                "roc_auc": 0.8658,
+                "threshold": 0.2
+              },
+              "potential_defect": {
+                "available": true,
+                "observed": 443,
+                "positive_support": 312,
+                "precision": 0.943,
+                "recall": 0.9006,
+                "f1": 0.9213,
+                "roc_auc": 0.9542,
+                "threshold": 0.425
+              }
+            }
+          }
+        },
+        {
+          "epoch": 11,
+          "seconds": 210.5,
+          "learning_rate": 0.00015,
+          "train": {
+            "loss": 0.371980085661202,
+            "classification_loss": 0.28540058712925437,
+            "quality_loss": 0.05771966548812882
+          },
+          "validation": {
+            "macro_f1": 0.6836,
+            "quality_mae": 21.126,
+            "quality_rmse": 28.969,
+            "selection_score": 0.71513,
+            "per_issue": {
+              "blur": {
+                "available": true,
+                "observed": 1500,
+                "positive_support": 180,
+                "precision": 0.9569,
+                "recall": 0.6167,
+                "f1": 0.75,
+                "roc_auc": 0.8941,
+                "threshold": 0.85
+              },
+              "underexposure": {
+                "available": true,
+                "observed": 1500,
+                "positive_support": 60,
+                "precision": 0.1806,
+                "recall": 0.65,
+                "f1": 0.2826,
+                "roc_auc": 0.7891,
+                "threshold": 0.325
+              },
+              "overexposure": {
+                "available": true,
+                "observed": 1500,
+                "positive_support": 60,
+                "precision": 0.7556,
+                "recall": 0.5667,
+                "f1": 0.6476,
+                "roc_auc": 0.8602,
+                "threshold": 0.75
+              },
+              "noise": {
+                "available": true,
+                "observed": 1500,
+                "positive_support": 300,
+                "precision": 0.7737,
+                "recall": 0.8433,
+                "f1": 0.807,
+                "roc_auc": 0.9573,
+                "threshold": 0.425
+              },
+              "severe_degradation": {
+                "available": true,
+                "observed": 1500,
+                "positive_support": 420,
+                "precision": 0.6795,
+                "recall": 0.7167,
+                "f1": 0.6976,
+                "roc_auc": 0.8406,
+                "threshold": 0.175
+              },
+              "potential_defect": {
+                "available": true,
+                "observed": 443,
+                "positive_support": 312,
+                "precision": 0.9549,
+                "recall": 0.8814,
+                "f1": 0.9167,
+                "roc_auc": 0.9505,
+                "threshold": 0.375
+              }
+            }
+          }
+        },
+        {
+          "epoch": 12,
+          "seconds": 123.5,
+          "learning_rate": 0.00015,
+          "train": {
+            "loss": 0.3729657723653337,
+            "classification_loss": 0.28933784438108,
+            "quality_loss": 0.05575195239077798
+          },
+          "validation": {
+            "macro_f1": 0.6626,
+            "quality_mae": 19.427,
+            "quality_rmse": 26.806,
+            "selection_score": 0.70554,
+            "per_issue": {
+              "blur": {
+                "available": true,
+                "observed": 1500,
+                "positive_support": 180,
+                "precision": 0.7484,
+                "recall": 0.6444,
+                "f1": 0.6925,
+                "roc_auc": 0.8927,
+                "threshold": 0.575
+              },
+              "underexposure": {
+                "available": true,
+                "observed": 1500,
+                "positive_support": 60,
+                "precision": 0.1624,
+                "recall": 0.5333,
+                "f1": 0.249,
+                "roc_auc": 0.7723,
+                "threshold": 0.4
+              },
+              "overexposure": {
+                "available": true,
+                "observed": 1500,
+                "positive_support": 60,
+                "precision": 0.6842,
+                "recall": 0.65,
+                "f1": 0.6667,
+                "roc_auc": 0.8689,
+                "threshold": 0.775
+              },
+              "noise": {
+                "available": true,
+                "observed": 1500,
+                "positive_support": 300,
+                "precision": 0.7434,
+                "recall": 0.85,
+                "f1": 0.7932,
+                "roc_auc": 0.9588,
+                "threshold": 0.7
+              },
+              "severe_degradation": {
+                "available": true,
+                "observed": 1500,
+                "positive_support": 420,
+                "precision": 0.7688,
+                "recall": 0.5857,
+                "f1": 0.6649,
+                "roc_auc": 0.8482,
+                "threshold": 0.3
+              },
+              "potential_defect": {
+                "available": true,
+                "observed": 443,
+                "positive_support": 312,
+                "precision": 0.9022,
+                "recall": 0.9167,
+                "f1": 0.9094,
+                "roc_auc": 0.9357,
+                "threshold": 0.2
+              }
+            }
+          }
+        }
+      ],
+      "failure_cases": [
+        {
+          "kind": "quality_regression_error",
+          "file": "I19_08_01.png",
+          "source": "kadid10k",
+          "target": 96.75,
+          "prediction": 27.27,
+          "absolute_error": 69.48
+        },
+        {
+          "kind": "quality_regression_error",
+          "file": "I19_18_03.png",
+          "source": "kadid10k",
+          "target": 92.5,
+          "prediction": 27.27,
+          "absolute_error": 65.23
+        },
+        {
+          "kind": "quality_regression_error",
+          "file": "I19_12_01.png",
+          "source": "kadid10k",
+          "target": 90.0,
+          "prediction": 25.88,
+          "absolute_error": 64.12
+        },
+        {
+          "kind": "quality_regression_error",
+          "file": "I19_05_01.png",
+          "source": "kadid10k",
+          "target": 82.5,
+          "prediction": 19.64,
+          "absolute_error": 62.86
+        },
+        {
+          "kind": "issue_misclassification",
+          "issue": "blur",
+          "file": "I63_01_01.png",
+          "source": "kadid10k",
+          "target": 1,
+          "probability": 0.002,
+          "threshold": 0.7
+        },
+        {
+          "kind": "issue_misclassification",
+          "issue": "underexposure",
+          "file": "I20_18_04.png",
+          "source": "kadid10k",
+          "target": 0,
+          "probability": 0.9785,
+          "threshold": 0.425
+        },
+        {
+          "kind": "issue_misclassification",
+          "issue": "overexposure",
+          "file": "I63_16_01.png",
+          "source": "kadid10k",
+          "target": 1,
+          "probability": 0.0015,
+          "threshold": 0.8
+        },
+        {
+          "kind": "issue_misclassification",
+          "issue": "noise",
+          "file": "I37_13_01.png",
+          "source": "kadid10k",
+          "target": 1,
+          "probability": 0.0185,
+          "threshold": 0.85
+        },
+        {
+          "kind": "issue_misclassification",
+          "issue": "severe_degradation",
+          "file": "I76_25_05.png",
+          "source": "kadid10k",
+          "target": 0,
+          "probability": 0.9907,
+          "threshold": 0.275
+        },
+        {
+          "kind": "issue_misclassification",
+          "issue": "potential_defect",
+          "file": "000-86.png",
+          "source": "mvtec_ad",
+          "target": 0,
+          "probability": 0.8408,
+          "threshold": 0.4
+        }
+      ],
+      "note": "EfficientNet-B0 candidate crashed (cudaErrorIllegalAddress on RTX 3050 Laptop GPU with channels_last). MobileNetV3-Small is the only evaluated candidate."
+    }
+  ],
+  "selected_validation": {
+    "macro_f1": 0.6838,
+    "quality_mae": 20.014,
+    "quality_rmse": 27.098,
+    "selection_score": 0.71862,
+    "per_issue": {
+      "blur": {
+        "available": true,
+        "observed": 1500,
+        "positive_support": 180,
+        "precision": 0.9835,
+        "recall": 0.6611,
+        "f1": 0.7907,
+        "roc_auc": 0.9057,
+        "threshold": 0.7
+      },
+      "underexposure": {
+        "available": true,
+        "observed": 1500,
+        "positive_support": 60,
+        "precision": 0.1498,
+        "recall": 0.6167,
+        "f1": 0.241,
+        "roc_auc": 0.7758,
+        "threshold": 0.425
+      },
+      "overexposure": {
+        "available": true,
+        "observed": 1500,
+        "positive_support": 60,
+        "precision": 0.7391,
+        "recall": 0.5667,
+        "f1": 0.6415,
+        "roc_auc": 0.8776,
+        "threshold": 0.8
+      },
+      "noise": {
+        "available": true,
+        "observed": 1500,
+        "positive_support": 300,
+        "precision": 0.9104,
+        "recall": 0.8133,
+        "f1": 0.8592,
+        "roc_auc": 0.9663,
+        "threshold": 0.85
+      },
+      "severe_degradation": {
+        "available": true,
+        "observed": 1500,
+        "positive_support": 420,
+        "precision": 0.6945,
+        "recall": 0.6333,
+        "f1": 0.6625,
+        "roc_auc": 0.8415,
+        "threshold": 0.275
+      },
+      "potential_defect": {
+        "available": true,
+        "observed": 443,
+        "positive_support": 312,
+        "precision": 0.9153,
+        "recall": 0.9006,
+        "f1": 0.9079,
+        "roc_auc": 0.9211,
+        "threshold": 0.4
+      }
+    }
+  },
+  "selected_test": {
+    "macro_f1": 0.6584,
+    "quality_mae": 13.96,
+    "quality_rmse": 19.123,
+    "selection_score": 0.71901,
+    "per_issue": {
+      "blur": {
+        "available": true,
+        "observed": 1500,
+        "positive_support": 180,
+        "precision": 0.9034,
+        "recall": 0.7278,
+        "f1": 0.8062,
+        "roc_auc": 0.947,
+        "threshold": 0.7
+      },
+      "underexposure": {
+        "available": true,
+        "observed": 1500,
+        "positive_support": 60,
+        "precision": 0.2108,
+        "recall": 0.7167,
+        "f1": 0.3258,
+        "roc_auc": 0.8815,
+        "threshold": 0.425
+      },
+      "overexposure": {
+        "available": true,
+        "observed": 1500,
+        "positive_support": 60,
+        "precision": 0.2176,
+        "recall": 0.6167,
+        "f1": 0.3217,
+        "roc_auc": 0.909,
+        "threshold": 0.8
+      },
+      "noise": {
+        "available": true,
+        "observed": 1500,
+        "positive_support": 300,
+        "precision": 0.9843,
+        "recall": 0.8367,
+        "f1": 0.9045,
+        "roc_auc": 0.9902,
+        "threshold": 0.85
+      },
+      "severe_degradation": {
+        "available": true,
+        "observed": 1500,
+        "positive_support": 420,
+        "precision": 0.6581,
+        "recall": 0.7333,
+        "f1": 0.6937,
+        "roc_auc": 0.887,
+        "threshold": 0.275
+      },
+      "potential_defect": {
+        "available": true,
+        "observed": 416,
+        "positive_support": 293,
+        "precision": 0.9211,
+        "recall": 0.8771,
+        "f1": 0.8986,
+        "roc_auc": 0.9241,
+        "threshold": 0.4
+      }
+    }
+  },
+  "efficientnet_crash": {
+    "error": "cudaErrorIllegalAddress",
+    "cause": "channels_last memory format incompatibility on RTX 3050 Laptop GPU during EfficientNet-B0 training epoch 1",
+    "action": "MobileNetV3-Small used as sole candidate; EfficientNet removed from consideration"
+  }
+}

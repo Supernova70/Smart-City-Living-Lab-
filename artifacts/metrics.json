@@ -1,0 +1,108 @@
+{
+  "model_name": "hybrid_cv_random_forest",
+  "model_version": "1.0.0",
+  "training_source": "controlled synthetic degradations from procedurally generated clean images",
+  "seed": 42,
+  "base_image_count": 120,
+  "sample_count": 1080,
+  "split_samples": {
+    "train": 756,
+    "validation": 162,
+    "test": 162
+  },
+  "validation": {
+    "exact_match_accuracy": 0.8519,
+    "macro_f1": 0.9179,
+    "micro_f1": 0.9222,
+    "quality_mae": 6.255,
+    "quality_rmse": 8.386,
+    "per_issue": {
+      "blur": {
+        "precision": 1.0,
+        "recall": 0.8065,
+        "f1": 0.8929,
+        "support": 31
+      },
+      "underexposure": {
+        "precision": 1.0,
+        "recall": 0.9655,
+        "f1": 0.9825,
+        "support": 29
+      },
+      "overexposure": {
+        "precision": 1.0,
+        "recall": 0.9677,
+        "f1": 0.9836,
+        "support": 31
+      },
+      "noise": {
+        "precision": 1.0,
+        "recall": 0.8485,
+        "f1": 0.918,
+        "support": 33
+      },
+      "severe_degradation": {
+        "precision": 1.0,
+        "recall": 0.9615,
+        "f1": 0.9804,
+        "support": 26
+      },
+      "potential_defect": {
+        "precision": 1.0,
+        "recall": 0.6,
+        "f1": 0.75,
+        "support": 30
+      }
+    }
+  },
+  "test": {
+    "exact_match_accuracy": 0.8457,
+    "macro_f1": 0.9078,
+    "micro_f1": 0.9112,
+    "quality_mae": 6.416,
+    "quality_rmse": 9.356,
+    "per_issue": {
+      "blur": {
+        "precision": 1.0,
+        "recall": 0.8667,
+        "f1": 0.9286,
+        "support": 30
+      },
+      "underexposure": {
+        "precision": 0.9062,
+        "recall": 0.9355,
+        "f1": 0.9206,
+        "support": 31
+      },
+      "overexposure": {
+        "precision": 1.0,
+        "recall": 0.9062,
+        "f1": 0.9508,
+        "support": 32
+      },
+      "noise": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 26
+      },
+      "severe_degradation": {
+        "precision": 1.0,
+        "recall": 0.8387,
+        "f1": 0.9123,
+        "support": 31
+      },
+      "potential_defect": {
+        "precision": 0.9474,
+        "recall": 0.6,
+        "f1": 0.7347,
+        "support": 30
+      }
+    }
+  },
+  "limitations": [
+    "Training images are procedurally generated and do not represent all natural-image content.",
+    "Potential defect is trained as a local anomaly proxy, not product-specific defect certification.",
+    "KADID-10k training is recommended when deadline and download time permit."
+  ]
+}

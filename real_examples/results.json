@@ -1,0 +1,154 @@
+[
+  {
+    "preview": "01_acceptable.jpg",
+    "source_dataset": "kadid10k",
+    "source_filename": "I19_08_01.png",
+    "target_issues": [],
+    "target_quality": 96.75,
+    "predicted_issues": [
+      "severe_degradation",
+      "potential_defect"
+    ],
+    "predicted_quality": 27.25,
+    "probabilities": {
+      "blur": 0.6216,
+      "underexposure": 0.0018,
+      "overexposure": 0.0047,
+      "noise": 0.0093,
+      "severe_degradation": 0.8228,
+      "potential_defect": 0.8706
+    }
+  },
+  {
+    "preview": "02_blur.jpg",
+    "source_dataset": "kadid10k",
+    "source_filename": "I19_01_01.png",
+    "target_issues": [
+      "blur"
+    ],
+    "target_quality": 85.00000000000001,
+    "predicted_issues": [
+      "severe_degradation",
+      "potential_defect"
+    ],
+    "predicted_quality": 27.25,
+    "probabilities": {
+      "blur": 0.6216,
+      "underexposure": 0.0018,
+      "overexposure": 0.0047,
+      "noise": 0.0093,
+      "severe_degradation": 0.8228,
+      "potential_defect": 0.8706
+    }
+  },
+  {
+    "preview": "03_underexposure.jpg",
+    "source_dataset": "kadid10k",
+    "source_filename": "I19_17_01.png",
+    "target_issues": [
+      "underexposure"
+    ],
+    "target_quality": 87.5,
+    "predicted_issues": [
+      "severe_degradation",
+      "potential_defect"
+    ],
+    "predicted_quality": 28.32,
+    "probabilities": {
+      "blur": 0.6592,
+      "underexposure": 0.0037,
+      "overexposure": 0.003,
+      "noise": 0.0099,
+      "severe_degradation": 0.7988,
+      "potential_defect": 0.8584
+    }
+  },
+  {
+    "preview": "04_overexposure.jpg",
+    "source_dataset": "kadid10k",
+    "source_filename": "I19_16_01.png",
+    "target_issues": [
+      "overexposure"
+    ],
+    "target_quality": 89.25,
+    "predicted_issues": [
+      "severe_degradation",
+      "potential_defect"
+    ],
+    "predicted_quality": 27.71,
+    "probabilities": {
+      "blur": 0.491,
+      "underexposure": 0.0006,
+      "overexposure": 0.0219,
+      "noise": 0.0075,
+      "severe_degradation": 0.8818,
+      "potential_defect": 0.8926
+    }
+  },
+  {
+    "preview": "05_noise.jpg",
+    "source_dataset": "kadid10k",
+    "source_filename": "I19_11_01.png",
+    "target_issues": [
+      "noise"
+    ],
+    "target_quality": 68.25,
+    "predicted_issues": [
+      "severe_degradation",
+      "potential_defect"
+    ],
+    "predicted_quality": 26.51,
+    "probabilities": {
+      "blur": 0.0064,
+      "underexposure": 0.0008,
+      "overexposure": 0.0005,
+      "noise": 0.7988,
+      "severe_degradation": 0.3599,
+      "potential_defect": 0.8594
+    }
+  },
+  {
+    "preview": "06_severe_degradation.jpg",
+    "source_dataset": "kadid10k",
+    "source_filename": "I19_09_01.png",
+    "target_issues": [
+      "severe_degradation"
+    ],
+    "target_quality": 90.75,
+    "predicted_issues": [
+      "severe_degradation",
+      "potential_defect"
+    ],
+    "predicted_quality": 27.91,
+    "probabilities": {
+      "blur": 0.5796,
+      "underexposure": 0.0016,
+      "overexposure": 0.0042,
+      "noise": 0.0067,
+      "severe_degradation": 0.8906,
+      "potential_defect": 0.8882
+    }
+  },
+  {
+    "preview": "07_potential_defect.jpg",
+    "source_dataset": "mvtec_ad",
+    "source_filename": "004-2.png",
+    "target_issues": [
+      "potential_defect"
+    ],
+    "target_quality": null,
+    "predicted_issues": [
+      "noise",
+      "potential_defect"
+    ],
+    "predicted_quality": 36.6,
+    "probabilities": {
+      "blur": 0.1858,
+      "underexposure": 0.1321,
+      "overexposure": 0.0242,
+      "noise": 0.8887,
+      "severe_degradation": 0.1235,
+      "potential_defect": 0.8535
+    }
+  }
+]

@@ -1,0 +1,9 @@
+-r requirements.txt
+torch==2.11.0
+torchvision==0.26.0
+huggingface-hub==0.35.3
+hf-xet==1.6.0
+tqdm==4.67.1
+
+# Install the CUDA build on the RTX 3050 machine with:
+# python -m pip install torch torchvision --index-url https://download.pytorch.org/whl/cu128

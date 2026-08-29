@@ -1,0 +1,15 @@
+{
+  "kadid10k": {
+    "archive_bytes": 3067408471,
+    "archive_sha256": "fe59ace86a2525d5785ff011a2119fa88839e0329f5029f7b23994727efd185c",
+    "distorted_png_count": 10125,
+    "pristine_png_count": 81,
+    "ignored_metadata_png_count": 132,
+    "label_file": "datasets\\kadid10k\\kadid10k\\dmos.csv"
+  },
+  "mvtec_ad": {
+    "png_count": 5354,
+    "samples_metadata_sha256": "dbbbb94cee2ddec28c1eef318733d07df4d59b9cc066e62e6aeef386c1db281d",
+    "samples_metadata": "datasets\\mvtec_ad\\samples.json"
+  }
+}

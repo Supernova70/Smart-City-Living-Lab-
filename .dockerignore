@@ -1,0 +1,12 @@
+.git
+.gitignore
+.venv
+__pycache__
+*.pyc
+.pytest_cache
+.test-tmp
+test-output
+data
+tests
+Software_Internship_Assessment.pdf
+
