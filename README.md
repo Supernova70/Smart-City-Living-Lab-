@@ -48,146 +48,67 @@ The **explainable gate layer** is key: if a CV measurement (e.g. `brightness_mea
 
 ## Model
 
-### Why MobileNetV3-Small
+**Model:** MobileNetV3-Small (pretrained on ImageNet-1k, fine-tuned for this task)
+**Version:** 2.0.0
+**Parameters:** ~2.5 million
+**Artifact:** `artifacts/image_quality_model.pt` (14 MB PyTorch checkpoint)
 
-Several architectures were evaluated. The selection came down to:
+### Trained on
 
-| Architecture | Result | Reason |
-|---|---|---|
-| EfficientNet-B0 | ❌ Crashed | `cudaErrorIllegalAddress` on RTX 3050 Laptop with `channels_last` memory layout — unrecoverable |
-| MobileNetV3-Small | ✅ Used | Stable on RTX 3050, fast on CPU (~14 ms), ImageNet pretrained, 2.5M parameters |
+| Dataset | What it contributes | Size |
+|---------|---------------------|------|
+| [KADID-10k](https://database.mmsp-kn.de/kadid-10k-database.html) | Image quality scores (DMOS) + issue labels for blur, noise, exposure, degradation | 10,125 images across 25 distortion types, 81 pristine references |
+| [MVTec AD](https://www.mvtec.com/company/research/datasets/mvtec-ad) | Visual defect detection | 5,354 images across 15 industrial product categories |
 
-MobileNetV3-Small was chosen because it is lightweight enough to run on CPU at deployment time without a GPU, yet deep enough to learn meaningful texture features for both quality regression and defect detection. The pretrained ImageNet weights give it a strong feature initialisation for photographic images.
+Total training set: **15,479 images** split into train (70%) / validation (15%) / test (15%).
 
-### Architecture detail
+### What the model outputs
 
-```
-ImageNet-pretrained MobileNetV3-Small backbone
-    └─ Features (576-dim pooled output)
-         ├─ Quality head:  Linear(576 → 1)   → sigmoid × 100  → score 0–100
-         └─ Issue head:    Linear(576 → 6)   → sigmoid         → 6 independent probabilities
-```
+Two outputs per image:
 
-The two heads share the same frozen-then-unfrozen backbone. The issue head uses **6 independent sigmoid outputs** (not softmax) because issues are not mutually exclusive — an image can be simultaneously blurry and underexposed.
+- **Quality score** — a number from 0 to 100. Derived from KADID DMOS ratings. Higher is better.
+- **Issue probabilities** — one confidence value (0–1) for each of the 6 defect types below.
 
-**Issue order (fixed):**
-```
-0: blur
-1: underexposure
-2: overexposure
-3: noise
-4: severe_degradation
-5: potential_defect
-```
+| Issue | Description |
+|-------|-------------|
+| `blur` | Insufficient sharpness (low Laplacian variance) |
+| `underexposure` | Image too dark |
+| `overexposure` | Image too bright / highlights clipped |
+| `noise` | High-frequency sensor or compression noise |
+| `severe_degradation` | Heavy compression artefacts or combined distortions |
+| `potential_defect` | Industrial surface anomaly (trained on MVTec AD) |
 
-### Training configuration
+An issue is flagged when its confidence exceeds **0.40** (the detection threshold for all classes).
 
-| Hyperparameter | Value |
-|---|---|
-| Backbone | `mobilenet_v3_small` (torchvision, ImageNet-1k pretrained) |
-| Input size | 224 × 224 |
+### Training setup
+
+| Setting | Value |
+|---------|-------|
+| Input size | 224 × 224 px |
 | Batch size | 24 |
-| Optimiser | Adam (lr = 1e-4, weight_decay = 1e-4) |
-| LR schedule | StepLR — ×0.5 every 4 epochs |
-| Mixed precision | AMP FP16 (torch.cuda.amp) |
-| Epochs | 12 (early stopped at epoch 6 — best validation score) |
-| Early stop patience | 6 epochs |
-| Loss — quality head | MSE against DMOS score (scaled 0–100) |
-| Loss — issue head | Binary cross-entropy (each issue independently) |
-| Combined loss | `0.5 × MSE + 0.5 × BCE` |
-| Hardware | RTX 3050 Laptop GPU (4 GB VRAM) |
+| Optimiser | Adam, lr = 1e-4 |
+| Epochs | 12 total, best checkpoint at epoch 6 |
+| Mixed precision | FP16 (AMP) |
+| GPU | NVIDIA RTX 3050 Laptop (4 GB VRAM) |
 
-### Data preprocessing
+### Test results (held-out data, never seen during training)
 
-All images go through the same pipeline at both train and inference time:
+| Metric | Score |
+|--------|-------|
+| Quality MAE | 13.96 points (out of 100) |
+| Defect head ROC-AUC | 0.924 |
+| Macro-F1 across all issues | 0.658 |
 
-```python
-transforms.Resize((224, 224))
-transforms.ToTensor()
-transforms.Normalize(mean=[0.485, 0.456, 0.406],   # ImageNet mean
-                     std= [0.229, 0.224, 0.225])    # ImageNet std
-```
+The macro-F1 misses the 0.70 target. Underexposure and overexposure make up only 4% of the test set, so those two classes score low individually. The defect head and quality score both perform well. See `artifacts/model_card.md` for per-class numbers.
 
-Training additionally applies random horizontal flip and colour jitter for augmentation. Inference uses the exact same resize + normalize without augmentation.
+### Inference speed
 
-### Dataset splits and leakage prevention
+~14 ms per image on CPU (after the first request warm-up of ~2.7 s).
 
-| Split | KADID strategy | MVTec strategy | Size |
-|---|---|---|---|
-| Train | Group by pristine reference image | Stratify by category | ~70% |
-| Validation | Same grouping | Same | ~15% |
-| Test | Same grouping | Same | ~15% |
-
-KADID has 81 pristine reference images, each with 125 distorted derivatives. Splitting by reference ensures the model never sees a distorted version of a reference it trained on — preventing the most common leakage in IQA benchmarks.
-
-### Issue detection thresholds
-
-Each issue has a per-class detection threshold tuned on the validation set:
-
-| Issue | Threshold | Notes |
-|---|---|---|
-| blur | 0.40 | Laplacian-variance gate also active |
-| underexposure | 0.40 | CV gate: brightness_mean < 0.18 → prob ≥ 0.92 |
-| overexposure | 0.40 | CV gate: brightness_mean > 0.84 → prob ≥ 0.92 |
-| noise | 0.40 | CV gate: noise_estimate > 0.075 → prob ≥ 0.88 |
-| severe_degradation | 0.40 | CV gate: blockiness > 0.055 → prob ≥ 0.82 |
-| potential_defect | 0.40 | MVTec-trained; high false-positive rate on non-industrial images |
-
-### Explainable gate layer
-
-The gate layer runs **after** the neural network and **before** the threshold decision. It floors probabilities using hard CV measurements:
-
-```python
-# Underexposure gate
-if brightness_mean < 0.18 or dark_pixel_ratio > 0.40:
-    underexposure = max(model_prob, 0.92)   # definite underexposure
-elif brightness_mean < 0.28:
-    underexposure = max(model_prob, 0.68)   # likely underexposure
-
-# Overexposure gate
-if brightness_mean > 0.84 or highlight_clip_ratio > 0.35:
-    overexposure = max(model_prob, 0.92)
-elif brightness_mean > 0.74:
-    overexposure = max(model_prob, 0.68)
-
-# Noise gate
-if noise_estimate > 0.075:
-    noise = max(model_prob, 0.88)
-
-# Blockiness / compression gate
-if blockiness > 0.055:
-    severe_degradation = max(model_prob, 0.82)
-```
-
-The gate never *suppresses* a model prediction — it only raises it. The final result returned by the API includes both `model_probability` (raw neural network output) and `confidence` (after gate), so the UI can show when a gate override fired.
-
-### Training data
-
-| Dataset | Role | Size |
-|---|---|---|
-| [KADID-10k](https://database.mmsp-kn.de/kadid-10k-database.html) | Quality regression + blur / noise / degradation / exposure labels | 10,125 distorted images, 81 reference images |
-| [MVTec AD](https://www.mvtec.com/company/research/datasets/mvtec-ad) | Defect detection head only | 5,354 images, 15 industrial categories |
-
-**Total manifest:** 15,479 records across train / validation / test splits.
-
-### Test-set evaluation (real data, unseen during training)
-
-| Metric | Value | Gate |
-|---|---|---|
-| Quality MAE | **13.96** | ≤ 15 ✅ |
-| PD head ROC-AUC | **0.924** | ≥ 0.80 ✅ |
-| Macro-F1 | **0.658** | ≥ 0.70 ❌ |
-
-The macro-F1 gate is not met. Underexposure and overexposure have only 4 % positive rate in the KADID test partition, yielding per-class F1 ≈ 0.32 for those two heads. The PD head (ROC-AUC 0.924) and quality regression (MAE 13.96) perform well. The explainable brightness gates compensate for exposure detection at inference time. See `artifacts/model_card.md` for the full per-class breakdown and failure cases.
-
-### Inference latency
-
-| Environment | Avg latency |
-|---|---|
-| CPU (warm, single image) | ~14 ms |
-| First request (model load) | ~2.7 s |
 
 ---
+
+
 
 ## Quick start (local Python)
 
